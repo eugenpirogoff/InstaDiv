@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html>
+  <head>
+	<title>TITLE</title>
+	<script type="text/javascript" src="http://code.jquery.com/jquery-latest.min.js"></script>
+	<style>
+
+		body{
+			position: absolute;
+			overflow: hidden;
+		}
+
+		/*
+			CSS for thumbnail size from Instagram
+		*/
+
+		.crop_thumb {
+				float:left;
+				margin:.0em .0em .0em .0em;
+				overflow:hidden; 
+				position:relative; 
+				width:130px;
+				height:130px;
+			}
+
+
+		.image_thumb {
+				position:absolute;
+				top:-10px;
+				left:-10px;
+			}
+
+		/*
+			CSS for low resolution size from Instagram
+		*/
+		.crop_low {
+				float:left;
+				margin:-1.0em -1.5em -1.5em -1.5em;
+				overflow:hidden; 
+				position:relative; 
+				width:300px;
+				height:300px;
+			}
+
+
+		.image_low {
+				position:absolute;
+				top:-30px;
+				left:-30px;
+			}
+
+		/*
+			CSS for high resolution size from Instagram
+		*/
+		.crop_high {
+				float:left;
+				margin:-1.0em -1.5em -1.5em -1.5em;
+				overflow:hidden; 
+				position:relative; 
+				width:400px;
+				height:400px;
+			}
+
+
+		.image_high {
+				position:absolute;
+				top:-30px;
+				left:-30px;
+			}
+
+
+
+
+		.background {
+			position: absolute;
+			z-index: -1;
+			margin-left: -20px;
+			margin-top: -20px;
+			overflow: hidden;
+			background-color: white;
+		}
+
+
+
+	</style>
+	</head>
+	<body>
+	<div class="background"></div>
+<script>
+	var imagecount = 50;
+	var images = [];
+	var tmp0=new Array();
+	var instagramuserid = "371308";
+	var accesstoken = "371308.3de11e3.ef32cf78df594bae90b4b7bea836bfcf";
+
+
+//HELP FROM HERE...
+//https://forrst.com/posts/Using_the_Instagram_API-ti5
+
+// small = + data.data[i].images.thumbnail.url +
+// resolution: low_resolution, thumbnail, standard_resolution
+// 306 x 306 = low_resolution
+// 447 x 447 = standart_resolution
+// 
+// href='" + data.data[i].link +"'
+// 
+// anzahl der bilder im response = 20 
+// größe = 130 x 130 Pix 
+//
+
+
+
+$(function() {
+	
+    $.ajax({
+    	type: "GET",
+        dataType: "jsonp",
+        cache: false,
+        processData: true,
+        url: "https://api.instagram.com/v1/users/"+instagramuserid+"/media/recent/?access_token="+accesstoken+"&count="+imagecount,
+        success: function(data) {
+	        		instabackground(data.data);
+					for(var element = 0; element < 3; element++) {
+	    	        for (var i in data.data) {
+					      if(data.data.hasOwnProperty(i)){  
+					      	images.push(data.data[i].images.low_resolution.url);
+							}
+						}
+					}
+				
+					for(var element in images) {
+						if(images.hasOwnProperty(element) && (typeof images[element] != 'function')){  
+							$(".background").append("<p class='crop_low'><img class='image_low' src='"+images[element]+"' /></p>"); 
+					}
+				}
+			}    
+    });
+
+    $('.background').css('width', window.innerWidth+350);
+  	$('.background').css('height', window.innerHeight+350);
+
+});
+function instabackground(instaresponse){
+	var backgroundarray = [];
+	for(var i = 0; i < 100; i++) {
+		for(var element in instaresponse) {
+			backgroundarray.push(instaresponse[element]);
+		}		
+	}
+
+}
+</script>
+
+</body>
