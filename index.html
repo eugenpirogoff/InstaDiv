@@ -51,6 +51,8 @@
 
 		/*
 			CSS for high resolution size from Instagram
+			please make the right ajustments here
+			i simply do not use the big images
 		*/
 		.crop_high {
 				float:left;
@@ -68,9 +70,6 @@
 				left:-30px;
 			}
 
-
-
-
 		.background {
 			position: absolute;
 			z-index: -1;
@@ -87,28 +86,10 @@
 	<body>
 	<div class="background"></div>
 <script>
-	var imagecount = 50;
+	var imagecount = 50; // how many recent images do you want to have from instagram
 	var images = [];
-	var tmp0=new Array();
-	var instagramuserid = "371308";
-	var accesstoken = "371308.3de11e3.ef32cf78df594bae90b4b7bea836bfcf";
-
-
-//HELP FROM HERE...
-//https://forrst.com/posts/Using_the_Instagram_API-ti5
-
-// small = + data.data[i].images.thumbnail.url +
-// resolution: low_resolution, thumbnail, standard_resolution
-// 306 x 306 = low_resolution
-// 447 x 447 = standart_resolution
-// 
-// href='" + data.data[i].link +"'
-// 
-// anzahl der bilder im response = 20 
-// größe = 130 x 130 Pix 
-//
-
-
+	var instagramuserid = "371308"; // this is my id from Instagram
+	var accesstoken = "371308.3de11e3.ef32cf78df594bae90b4b7bea836bfcf"; // my token
 
 $(function() {
 	
@@ -119,36 +100,27 @@ $(function() {
         processData: true,
         url: "https://api.instagram.com/v1/users/"+instagramuserid+"/media/recent/?access_token="+accesstoken+"&count="+imagecount,
         success: function(data) {
-	        		instabackground(data.data);
 					for(var element = 0; element < 3; element++) {
 	    	        for (var i in data.data) {
 					      if(data.data.hasOwnProperty(i)){  
-					      	images.push(data.data[i].images.low_resolution.url);
+					      	images.push(data.data[i].images.thumbnail.url);
 							}
 						}
 					}
-				
 					for(var element in images) {
 						if(images.hasOwnProperty(element) && (typeof images[element] != 'function')){  
-							$(".background").append("<p class='crop_low'><img class='image_low' src='"+images[element]+"' /></p>"); 
+							$(".background").append("<p class='crop_thumb'><img class='image_thumb' src='"+images[element]+"' /></p>"); 
 					}
 				}
-			}    
+			}
+
     });
 
-    $('.background').css('width', window.innerWidth+350);
-  	$('.background').css('height', window.innerHeight+350);
+    $('.background').css('width', window.innerWidth+130); // 130 for thumbnail size, 350 for low resolution, 450 for high resolutiom
+  	$('.background').css('height', window.innerHeight+130); // 130 for thumbnail size, 350 for low resolution, 450 for high resolutiom
 
 });
-function instabackground(instaresponse){
-	var backgroundarray = [];
-	for(var i = 0; i < 100; i++) {
-		for(var element in instaresponse) {
-			backgroundarray.push(instaresponse[element]);
-		}		
-	}
 
-}
 </script>
 
 </body>
