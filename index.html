@@ -121,6 +121,15 @@ $(function() {
 
 });
 
+$(window).resize(function() {
+
+  $('.background').css('width', window.innerWidth+130); // 130 for thumbnail size, 350 for low resolution, 450 for high resolutiom
+  	$('.background').css('height', window.innerHeight+130); // 130 for thumbnail size, 350 for low resolution, 450 for high resolutiom
+
+
+});
+
+
 </script>
 
 </body>
