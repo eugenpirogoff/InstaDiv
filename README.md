@@ -7,7 +7,9 @@ GET with jQuery
 url: "https://api.instagram.com/v1/users/[userid]/media/recent/?access_token=[access_token]"
 
 
-![image](http://git)
+
+![image](https://github.com/eugenpirogoff/InstaDiv/raw/master/img/instadiv_thumb.png)
+![image](https://github.com/eugenpirogoff/InstaDiv/raw/master/img/instadiv_low.png)
 
 
 
