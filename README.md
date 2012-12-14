@@ -1,7 +1,7 @@
 InstaDiv
 ===
 
-Instagram images as div without borders. 
+Instagram images as div without borders. The Idea is to have your own Instagram Feed in a single Div as the Background of your Page. 
 
 GET with jQuery 
 url: "https://api.instagram.com/v1/users/[userid]/media/recent/?access_token=[access_token]"
