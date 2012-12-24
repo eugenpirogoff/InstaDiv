@@ -21,22 +21,22 @@ $(function() {
 					}
 					for(var element in images) {
 						if(images.hasOwnProperty(element) && (typeof images[element] != 'function')){  
-							$(".background").append("<p class='crop_thumb'><img class='image_thumb' src='"+images[element]+"' /></p>"); 
+							$(".insta_div").append("<p class='crop_thumb'><img class='image_thumb' src='"+images[element]+"' /></p>"); 
 					}
 				}
 			}
 
     });
 
-    $('.background').css('width', window.innerWidth+150); // 150 for thumbnail size, 350 for low resolution, 450 for high resolutiom
-  	$('.background').css('height', window.innerHeight+150); // 150 for thumbnail size, 350 for low resolution, 450 for high resolutiom
+    $('.insta_div').css('width', window.innerWidth+150); // 150 for thumbnail size, 350 for low resolution, 450 for high resolutiom
+  	$('.insta_div').css('height', window.innerHeight+150); // 150 for thumbnail size, 350 for low resolution, 450 for high resolutiom
 
 });
 
 $(window).resize(function() {
 
-  $('.background').css('width', window.innerWidth+150); // 150 for thumbnail size, 350 for low resolution, 450 for high resolutiom
-  	$('.background').css('height', window.innerHeight+150); // 150 for thumbnail size, 350 for low resolution, 450 for high resolutiom
+  $('.insta_div').css('width', window.innerWidth+150); // 150 for thumbnail size, 350 for low resolution, 450 for high resolutiom
+  	$('.insta_div').css('height', window.innerHeight+150); // 150 for thumbnail size, 350 for low resolution, 450 for high resolutiom
 
 
 });
