@@ -1,24 +1,23 @@
 (function( $ ) {
 
-  // how many recent images do you want to have from instagram
-  var imagecount = 50;
-  // this is my id from Instagram, you shure use yours
-  var instagramuserid = "371308";
-  // my token, you should use yours 
-  var accesstoken = "371308.3de11e3.ef32cf78df594bae90b4b7bea836bfcf";
-
-  $.fn.instaDiv = function() {
+  $.fn.instaDiv = function(instagram_user_id, access_token) {
     $.ajax({
       type: "GET",
       dataType: "jsonp",
       cache: false,
       processData: true,
-      url: "https://api.instagram.com/v1/users/" +
-        instagramuserid + "/media/recent/?access_token=" + accesstoken + "&count=" +
-        imagecount,
+      url: instagram_url(instagram_user_id, access_token),
       success: ajax_success
     });
   };
+
+  function instagram_url(instagram_user_id, access_token) {
+    // how many recent images do you want to have from instagram
+    var imagecount = 50;
+    return  "https://api.instagram.com/v1/users/" +
+      instagram_user_id + "/media/recent/?access_token=" + access_token + "&count=" +
+      imagecount;
+  }
 
   var ajax_success = function(data) {
     images = store_images(data);

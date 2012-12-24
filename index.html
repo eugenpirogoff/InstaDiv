@@ -2,17 +2,19 @@
      "http://www.w3.org/TR/html4/loose.dtd">
 <html>
   <head>
-        <title>Example page</title>
-        <script type="text/javascript" src="http://code.jquery.com/jquery-latest.min.js">
-        </script>
-        <script type="text/javascript" src="src/js/instaDiv.js"></script>
-        <link rel="stylesheet" type="text/css" href="src/css/insta_div.css">
-        </head>
-        <body>
-        <div class="insta_div"></div>
-        <script type="text/javascript">
-          $(document).ready(function() {
-            $(".insta_div").instaDiv();
-          });
-        </script>
-</body>
+    <title>Example page</title>
+    <script type="text/javascript" src="http://code.jquery.com/jquery-latest.min.js">
+    </script>
+    <script type="text/javascript" src="src/js/instaDiv.js"></script>
+    <link rel="stylesheet" type="text/css" href="src/css/insta_div.css">
+  </head>
+  <body>
+    <div class="insta_div"></div>
+    <script type="text/javascript">
+      $(document).ready(function() {
+          $(".insta_div").instaDiv("371308",
+            "371308.3de11e3.ef32cf78df594bae90b4b7bea836bfcf");
+      });
+    </script>
+  </body>
+</html>
