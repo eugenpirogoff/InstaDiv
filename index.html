@@ -1,135 +1,20 @@
-<!DOCTYPE html>
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+     "http://www.w3.org/TR/html4/loose.dtd">
 <html>
   <head>
-	<title>TITLE</title>
-	<script type="text/javascript" src="http://code.jquery.com/jquery-latest.min.js"></script>
-	<style>
-
-		body{
-			position: absolute;
-			overflow: hidden;
-		}
-
-		/*
-			CSS for thumbnail size from Instagram
-		*/
-
-		.crop_thumb {
-				float:left;
-				margin:.0em .0em .0em .0em;
-				overflow:hidden; 
-				position:relative; 
-				width:130px;
-				height:130px;
-			}
-
-
-		.image_thumb {
-				position:absolute;
-				top:-10px;
-				left:-10px;
-			}
-
-		/*
-			CSS for low resolution size from Instagram
-		*/
-		.crop_low {
-				float:left;
-				margin:-1.0em -1.5em -1.5em -1.5em;
-				overflow:hidden; 
-				position:relative; 
-				width:300px;
-				height:300px;
-			}
-
-
-		.image_low {
-				position:absolute;
-				top:-30px;
-				left:-30px;
-			}
-
-		/*
-			CSS for high resolution size from Instagram
-			please make the right ajustments here
-			i simply do not use the big images
-		*/
-		.crop_high {
-				float:left;
-				margin:-1.0em -1.5em -1.5em -1.5em;
-				overflow:hidden; 
-				position:relative; 
-				width:400px;
-				height:400px;
-			}
-
-
-		.image_high {
-				position:absolute;
-				top:-30px;
-				left:-30px;
-			}
-
-		.background {
-			position: absolute;
-			z-index: -1;
-			margin-left: -20px;
-			margin-top: -20px;
-			overflow: hidden;
-			background-color: white;
-		}
-
-
-
-	</style>
-	</head>
-	<body>
-	<div class="background"></div>
-<script>
-	var imagecount = 50; // how many recent images do you want to have from instagram
-	var images = [];
-	var instagramuserid = "371308"; // this is my id from Instagram, you shure use yours
-	var accesstoken = "371308.3de11e3.ef32cf78df594bae90b4b7bea836bfcf"; // my token, you should use yours 
-
-$(function() {
-	
-    $.ajax({
-    	type: "GET",
-        dataType: "jsonp",
-        cache: false,
-        processData: true,
-        url: "https://api.instagram.com/v1/users/"+instagramuserid+"/media/recent/?access_token="+accesstoken+"&count="+imagecount,
-        success: function(data) {
-					for(var element = 0; element < 3; element++) {
-	    	        for (var i in data.data) {
-					      if(data.data.hasOwnProperty(i)){  
-					      	images.push(data.data[i].images.thumbnail.url);
-							}
-						}
-					}
-					for(var element in images) {
-						if(images.hasOwnProperty(element) && (typeof images[element] != 'function')){  
-							$(".background").append("<p class='crop_thumb'><img class='image_thumb' src='"+images[element]+"' /></p>"); 
-					}
-				}
-			}
-
-    });
-
-    $('.background').css('width', window.innerWidth+150); // 150 for thumbnail size, 350 for low resolution, 450 for high resolutiom
-  	$('.background').css('height', window.innerHeight+150); // 150 for thumbnail size, 350 for low resolution, 450 for high resolutiom
-
-});
-
-$(window).resize(function() {
-
-  $('.background').css('width', window.innerWidth+150); // 150 for thumbnail size, 350 for low resolution, 450 for high resolutiom
-  	$('.background').css('height', window.innerHeight+150); // 150 for thumbnail size, 350 for low resolution, 450 for high resolutiom
-
-
-});
-
-
-</script>
-
-</body>
+    <title>Example page</title>
+    <script type="text/javascript" src="http://code.jquery.com/jquery-latest.min.js">
+    </script>
+    <script type="text/javascript" src="src/js/instaDiv.js"></script>
+    <link rel="stylesheet" type="text/css" href="src/css/insta_div.css">
+  </head>
+  <body>
+    <div class="insta_div"></div>
+    <script type="text/javascript">
+      $(document).ready(function() {
+          $(".insta_div").instaDiv("371308",
+            "371308.3de11e3.ef32cf78df594bae90b4b7bea836bfcf");
+      });
+    </script>
+  </body>
+</html>
