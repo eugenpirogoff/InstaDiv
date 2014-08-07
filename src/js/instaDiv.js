@@ -49,8 +49,7 @@
 
     for(var element in images) {
       if(images.hasOwnProperty(element) && (typeof images[element] != 'function')) {
-        $insta_div.append("<p class='crop_thumb'>" +
-            "<img class='image_thumb' src='" + images[element] + "' /></p>");
+        $insta_div.append("<img class='image_thumb' src='" + images[element] + "' />");
       }
     }
     resize_div();
