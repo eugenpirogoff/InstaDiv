@@ -40,8 +40,8 @@
     $insta_div = $(".insta_div");
 
     // 150 for thumbnail size, 350 for low resolution, 450 for high resolutiom
-    $insta_div.css('width', window.innerWidth+150);
-    $insta_div.css('height', window.innerHeight+150);
+    $insta_div.css('width', window.innerWidth);
+    $insta_div.css('height', window.innerHeight);
   }
 
   function append_to_div(images) {
