@@ -1,5 +1,9 @@
 (function( $ ) {
 
+  // 'constants'
+  var BACKGROUNDSQUARE_MAX_WIDTH = 150;
+  var BACKGROUNDSQUARE_MAX_HEIGHT = 149;
+
   $.fn.instaDiv = function(instagram_user_id, access_token) {
     $.ajax({
       type: "GET",
@@ -21,7 +25,7 @@
 
   var ajax_success = function(data) {
     images = store_images(data);
-    append_to_div(images);
+    resize_elements();
   }
 
   function store_images(data) {
@@ -36,26 +40,37 @@
     return images;
   }
 
-  function resize_div() {
+  function resize_elements() {
     $insta_div = $(".insta_div");
 
-    // 150 for thumbnail size, 350 for low resolution, 450 for high resolutiom
-    $insta_div.css('width', window.innerWidth);
-    $insta_div.css('height', window.innerHeight);
-  }
+    var windowWidth = window.innerWidth;
+    var windowHeight = window.innerHeight;
 
-  function append_to_div(images) {
-    $insta_div = $(".insta_div");
+    var horizontalNumberOfSquares = Math.floor(windowWidth / BACKGROUNDSQUARE_MAX_WIDTH);
+    var verticalNumberOfSquares = Math.floor(windowHeight / BACKGROUNDSQUARE_MAX_HEIGHT);
 
-    for(var element in images) {
-      if(images.hasOwnProperty(element) && (typeof images[element] != 'function')) {
-        $insta_div.append("<img class='image_thumb' src='" + images[element] + "' />");
-      }
+    var backgroundSquareWidth = windowWidth / horizontalNumberOfSquares;
+    var backgroundSquareHeight = Math.floor(windowHeight / verticalNumberOfSquares) + 1;
+
+    if (! $('.insta_div').length ) {
+      $('body').append('<div class="insta_div"></div>');
     }
-    resize_div();
+    $insta_div.empty();
+    // set width and height of the square container to match the window dimensions
+    $insta_div.css('width', windowWidth);
+    $insta_div.css('height', windowHeight);
+    // add the appropriate number of squares to fill the background
+    for ( i = 0; i < horizontalNumberOfSquares * verticalNumberOfSquares; i++ ) {
+      var square = null;
+      if (typeof images[i] != 'function') {
+        square = $insta_div.append("<img class='image_thumb' src='" + images[i] + "' />").children('.image_thumb').last();
+      }
+      $(square).css('width', backgroundSquareWidth);
+      $(square).css('height', backgroundSquareHeight);
+    }
   }
 
   $(window).resize(function() {
-    resize_div();
+    resize_elements();
   });
 })( jQuery );
