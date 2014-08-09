@@ -46,8 +46,8 @@
     var windowWidth = window.innerWidth;
     var windowHeight = window.innerHeight;
 
-    var horizontalNumberOfSquares = Math.floor(windowWidth / BACKGROUNDSQUARE_MAX_WIDTH);
-    var verticalNumberOfSquares = Math.floor(windowHeight / BACKGROUNDSQUARE_MAX_HEIGHT);
+    var horizontalNumberOfSquares = Math.floor(windowWidth / BACKGROUNDSQUARE_MAX_WIDTH) + 1;
+    var verticalNumberOfSquares = Math.floor(windowHeight / BACKGROUNDSQUARE_MAX_HEIGHT) + 1;
 
     var backgroundSquareWidth = windowWidth / horizontalNumberOfSquares;
     var backgroundSquareHeight = Math.floor(windowHeight / verticalNumberOfSquares) + 1;
@@ -61,12 +61,11 @@
     $insta_div.css('height', windowHeight);
     // add the appropriate number of squares to fill the background
     for ( i = 0; i < horizontalNumberOfSquares * verticalNumberOfSquares; i++ ) {
-      var square = null;
       if (typeof images[i] != 'function') {
-        square = $insta_div.append("<img class='image_thumb' src='" + images[i] + "' />").children('.image_thumb').last();
+        var square = $insta_div.append("<div class='crop_thumb'><img class='image_thumb' src='" + images[i] + "' /></div>").children('.crop_thumb').last();
+        $(square).css('width', backgroundSquareWidth);
+        $(square).css('height', backgroundSquareHeight);
       }
-      $(square).css('width', backgroundSquareWidth);
-      $(square).css('height', backgroundSquareHeight);
     }
   }
 

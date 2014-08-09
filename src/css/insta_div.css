@@ -7,31 +7,62 @@ body{
 /*
   CSS for thumbnail size from Instagram
  */
-.image_thumb {
+ .crop_thumb {
+  position: relative;
   float: left;
   margin: 0em 0em 0em 0em;
   width: 150px;
   height: 150px;
+  overflow: hidden;
+}
+
+.image_thumb {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  margin-left: -75px;
+  margin-top: -75px;
 }
 
 /*
   CSS for low resolution size from Instagram
  */
-.image_low {
+.crop_low {
+  position: relative;
   float: left;
+  margin: 0em 0em 0em 0em;
   width: 300px;
   height: 300px;
+  overflow: hidden;
+}
+
+.image_low {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  margin-left: -150px;
+  margin-top: -150px;
 }
 
 /*
   CSS for high resolution size from Instagram please make
   the right ajustments here. I simply do not use the big images
 */
-.image_high {
+.crop_high {
+  position: relative;
   float:left;
   margin: 0em 0em 0em 0em;
-  width:400px;
-  height:400px;
+  width: 400px;
+  height: 400px;
+  overflow: hidden;
+}
+
+.image_high {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  margin-left: -200px;
+  margin-top: -200px;
 }
 
 .insta_div {
@@ -44,4 +75,3 @@ body{
   background-color: white;
   overflow:hidden; 
 }
-
