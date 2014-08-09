@@ -1,42 +1,47 @@
 body{
-  position: absolute;
-  overflow: hidden;
+  position: relative;
+  margin: 0px;
+  padding: 0px;
 }
 
 /*
   CSS for thumbnail size from Instagram
  */
-.crop_thumb {
-  float:left;
-  margin:.0em .0em .0em .0em;
-  overflow:hidden; 
-  position:relative; 
-  width:130px;
-  height:130px;
+ .crop_thumb {
+  position: relative;
+  float: left;
+  margin: 0em 0em 0em 0em;
+  width: 150px;
+  height: 150px;
+  overflow: hidden;
 }
 
 .image_thumb {
-  position:absolute;
-  top:-10px;
-  left:-10px;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  margin-left: -75px;
+  margin-top: -75px;
 }
 
 /*
   CSS for low resolution size from Instagram
  */
 .crop_low {
-  float:left;
-  margin:-1.0em -1.5em -1.5em -1.5em;
-  overflow:hidden; 
-  position:relative; 
-  width:300px;
-  height:300px;
+  position: relative;
+  float: left;
+  margin: 0em 0em 0em 0em;
+  width: 300px;
+  height: 300px;
+  overflow: hidden;
 }
 
 .image_low {
-  position:absolute;
-  top:-30px;
-  left:-30px;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  margin-left: -150px;
+  margin-top: -150px;
 }
 
 /*
@@ -44,26 +49,29 @@ body{
   the right ajustments here. I simply do not use the big images
 */
 .crop_high {
+  position: relative;
   float:left;
-  margin:-1.0em -1.5em -1.5em -1.5em;
-  overflow:hidden; 
-  position:relative; 
-  width:400px;
-  height:400px;
+  margin: 0em 0em 0em 0em;
+  width: 400px;
+  height: 400px;
+  overflow: hidden;
 }
 
 .image_high {
-  position:absolute;
-  top:-30px;
-  left:-30px;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  margin-left: -200px;
+  margin-top: -200px;
 }
 
 .insta_div {
   position: absolute;
+  top: 0px;
+  left: 0px;
+  right: 0px;
+  bottom: 0px;
   z-index: -1;
-  margin-left: -20px;
-  margin-top: -20px;
-  overflow: hidden;
   background-color: white;
+  overflow:hidden; 
 }
-
